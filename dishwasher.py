@@ -19,13 +19,15 @@ class Dishwasher(QMainWindow):
         QToolTip.setFont(QFont('SansSerif', 10))
 
         btn1 = QPushButton("Clean", self)
-        btn1.resize(25, 25)
+        #btn1.resize(25, 25)
+        btn1.setMaximumSize(55, 25)
         btn1.setToolTip('Press this button to set status to clean')
         btn1.clicked.connect(self.buttonClicked1)
         hlayout.addWidget(btn1)            
         #btn1.move(30, 50)
 
         btn2 = QPushButton("Dirty", self)
+        btn2.setMaximumSize(55, 25)
         btn2.resize(25, 25)
         btn2.setToolTip('Press this button to set status to dirty')
         btn2.clicked.connect(self.buttonClicked2)
