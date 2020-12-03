@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import sys
+from subprocess import call
+
 from PyQt5.QtGui     import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore    import *
@@ -25,8 +27,8 @@ class Dishwasher(QMainWindow):
         btn2.setToolTip('Press this button to set status to dirty')
         btn2.move(150, 50)
       
-        btn1.clicked.connect(self.buttonClicked)            
-        btn2.clicked.connect(self.buttonClicked)
+        btn1.clicked.connect(self.buttonClicked1)            
+        btn2.clicked.connect(self.buttonClicked2)
 
         self.statusBar()
 
@@ -34,10 +36,17 @@ class Dishwasher(QMainWindow):
         self.setWindowTitle('Dishwasher Status')
         self.show()
         
-    def buttonClicked(self):
+    def buttonClicked1(self):
       
         sender = self.sender()
         self.statusBar().showMessage('Dishwasher is ' + sender.text())
+        call(['espeak "The dishwasher is clean" 2>/dev/null'], shell=True)
+
+    def buttonClicked2(self):
+      
+        sender = self.sender()
+        self.statusBar().showMessage('Dishwasher is ' + sender.text())
+        call(['espeak "The dishwasher is dirty" 2>/dev/null'], shell=True)
         
 if __name__ == '__main__':
     
