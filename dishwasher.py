@@ -8,28 +8,32 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore    import *
 
 
-class Dishwasher(QMainWindow):
-    
-    def __init__(self):
-        super().__init__()
-        
-        self.initUI()
-        
-    def initUI(self):      
+class Dishwasher(QMainWindow):    
+    def __init__(self, parent=None):
+        super(Dishwasher, self).__init__(parent)
+
+        widget = QWidget(self)        
+        hlayout = QHBoxLayout()
+        #vlayout = QVBoxLayout()
 
         QToolTip.setFont(QFont('SansSerif', 10))
 
         btn1 = QPushButton("Clean", self)
+        btn1.resize(25, 25)
         btn1.setToolTip('Press this button to set status to clean')
-        btn1.move(30, 50)
+        btn1.clicked.connect(self.buttonClicked1)
+        hlayout.addWidget(btn1)            
+        #btn1.move(30, 50)
 
         btn2 = QPushButton("Dirty", self)
+        btn2.resize(25, 25)
         btn2.setToolTip('Press this button to set status to dirty')
-        btn2.move(150, 50)
-      
-        btn1.clicked.connect(self.buttonClicked1)            
         btn2.clicked.connect(self.buttonClicked2)
-
+        hlayout.addWidget(btn2)
+        widget.setLayout(hlayout)
+        self.setCentralWidget(widget)
+        #btn2.move(150, 50)
+      
         self.statusBar()
 
         self.showMaximized()
