@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QToolTip
 from PyQt5.QtWidgets import QHBoxLayout, QPushButton, QWidget
 from PyQt5.QtCore import Qt
 
+
 class Dishwasher(QMainWindow):
 
     def __init__(self, parent=None):
