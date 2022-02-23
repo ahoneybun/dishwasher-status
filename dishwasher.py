@@ -6,7 +6,7 @@ from subprocess import call
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QMainWindow, QApplication, QToolTip
 from PyQt5.QtWidgets import QHBoxLayout, QPushButton, QWidget
-
+from PyQt5.QtCore import Qt
 
 class Dishwasher(QMainWindow):
 
@@ -14,8 +14,6 @@ class Dishwasher(QMainWindow):
         super(Dishwasher, self).__init__(parent)
 
         widget = QWidget(self)
-        hlayout = QHBoxLayout()
-        # vlayout = QVBoxLayout()
 
         QToolTip.setFont(QFont('SansSerif', 10))
 
@@ -24,7 +22,6 @@ class Dishwasher(QMainWindow):
         btn1.setMaximumSize(75, 45)
         btn1.setToolTip('Press this button to set status to clean')
         btn1.clicked.connect(self.buttonClicked1)
-        hlayout.addWidget(btn1)
         # btn1.move(30, 50)
 
         btn2 = QPushButton("Dirty", self)
@@ -32,10 +29,15 @@ class Dishwasher(QMainWindow):
         btn2.resize(25, 25)
         btn2.setToolTip('Press this button to set status to dirty')
         btn2.clicked.connect(self.buttonClicked2)
-        hlayout.addWidget(btn2)
-        widget.setLayout(hlayout)
         self.setCentralWidget(widget)
         # btn2.move(150, 50)
+
+        # Building the Layout
+        hlayout = QHBoxLayout()
+        hlayout.setAlignment(Qt.AlignCenter)
+        widget.setLayout(hlayout)
+        hlayout.addWidget(btn1)
+        hlayout.addWidget(btn2)
 
         self.statusBar()
 
